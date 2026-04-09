@@ -1,0 +1,112 @@
+%YAML:1.0
+
+#--------------------------------------------------------------------------------------------
+# Camera Parameters. Adjust them!
+#--------------------------------------------------------------------------------------------
+File.version: "1.0"
+Camera.type: "PinHole"
+
+Camera1.fx: 409.1132291263281
+Camera1.fy: 407.14043164818696
+Camera1.cx: 315.3128009168501
+Camera1.cy: 185.76340995404257
+
+Camera1.k1: -0.01304833841416474
+Camera1.k2: -0.017001285397314762
+Camera1.k3: 0.0
+Camera1.k4: 0.0
+Camera1.p1: -0.0015033785296227268
+Camera1.p2: -0.0016783925234868278
+
+Camera2.fx: 408.2188779073434
+Camera2.fy: 406.37277356030853
+Camera2.cx: 321.798287060098
+Camera2.cy: 198.02200513081885
+
+Camera2.k1: -0.000997043342172103
+Camera2.k2: -0.03604120331705475
+Camera2.k3: 0.0
+Camera2.k4: 0.0
+Camera2.p1: 0.001129867324259653
+Camera2.p2: -0.0001414872187218059
+    
+# Transformation matrix from right camera to left camera
+Stereo.T_c1_c2: !!opencv-matrix
+  rows: 4
+  cols: 4
+  dt: f
+  data: [0.7137219974271638, -0.006913210293811312, -0.7003949727917987, -0.04103968371474355,
+         0.01573753661184234, 0.9998571329416204, 0.0061679532395483615, 0.0004858970622945243,
+         0.7002522690645007, -0.015424695433228969, 0.7137288269649907, -0.022669897879097137,
+         0.0, 0.0, 0.0, 1.000000000000000]
+
+# Lapping area between images
+Camera1.overlappingBegin: 0
+Camera1.overlappingEnd: 399
+
+Camera2.overlappingBegin: 0
+Camera2.overlappingEnd: 399
+
+# Camera resolution
+Camera.width: 640
+Camera.height: 400
+
+# Camera frames per second 
+Camera.fps: 30
+
+# Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
+Camera.RGB: 1
+
+# Close/Far threshold. Baseline times.
+Stereo.ThDepth: 40.0
+
+# Transformation from body-frame (imu) to left camera
+IMU.T_b_c1: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: f
+   data: [-0.01593732,  0.99981417,  0.0108453,   0.0038378, 
+          -0.02524441, -0.01124557,  0.99961806, -0.03418507,
+           0.99955426,  0.01565745,  0.02541894, -0.04791803,
+                   0.0, 0.0, 0.0, 1.0]
+
+# IMU noise (Use those from VINS-mono)
+IMU.NoiseGyro: 0.0012633185 # 0.004 (VINS) # 0.00016 (TUM) # 0.00016    # rad/s^0.5 
+IMU.NoiseAcc:  0.025309522 # 0.04 (VINS) # 0.0028 (TUM) # 0.0028     # m/s^1.5
+IMU.GyroWalk:  0.00004260517430489519 # 0.000022 (VINS and TUM) rad/s^1.5
+IMU.AccWalk:   0.0020018773682178493 # 0.0004 (VINS) # 0.00086 # 0.00086    # m/s^2.5
+IMU.Frequency: 400.0
+
+#--------------------------------------------------------------------------------------------
+# ORB Parameters
+#--------------------------------------------------------------------------------------------
+
+# ORB Extractor: Number of features per image
+ORBextractor.nFeatures: 1000 # Tested with 1250
+
+# ORB Extractor: Scale factor between levels in the scale pyramid 	
+ORBextractor.scaleFactor: 1.2
+
+# ORB Extractor: Number of levels in the scale pyramid	
+ORBextractor.nLevels: 8
+
+# ORB Extractor: Fast threshold
+# Image is divided in a grid. At each cell FAST are extracted imposing a minimum response.
+# Firstly we impose iniThFAST. If no corners are detected we impose a lower value minThFAST
+# You can lower these values if your images have low contrast			
+ORBextractor.iniThFAST: 20
+ORBextractor.minThFAST: 7
+
+#--------------------------------------------------------------------------------------------
+# Viewer Parameters
+#--------------------------------------------------------------------------------------------
+Viewer.KeyFrameSize: 0.05
+Viewer.KeyFrameLineWidth: 1.0
+Viewer.GraphLineWidth: 0.9
+Viewer.PointSize: 2.0
+Viewer.CameraSize: 0.08
+Viewer.CameraLineWidth: 3.0
+Viewer.ViewpointX: 0.0
+Viewer.ViewpointY: -0.7
+Viewer.ViewpointZ: -3.5
+Viewer.ViewpointF: 500.0

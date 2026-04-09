@@ -57,6 +57,8 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 find_package(Eigen3 3.1.0 REQUIRED)
+
+include(~/librairies/Pangolin/build/PangolinConfig.cmake)
 find_package(Pangolin REQUIRED)
 
 add_service_files(
